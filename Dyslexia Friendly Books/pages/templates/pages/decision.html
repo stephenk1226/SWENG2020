@@ -18,7 +18,7 @@
     <!-- Favicon -->
     <link rel="apple-touch-icon" sizes="180x180" href=" {% static 'images/apple-touch-icon.png' %}">
     <link rel="icon" type="image/png" sizes="32x32" href="{% static 'images/favicon-32x32.png' %}">
-    <link rel="icon" type="image/png" sizes="16x16" href="{% static  'images/favicon-16x16.png' &}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static  'images/favicon-16x16.png' %}">
     <link rel="manifest" href="/site.webmanifest">
     <!-- Font Awesome JS -->
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
@@ -26,7 +26,18 @@
     <!--Google Font Chilanka -->
     <link href="https://fonts.googleapis.com/css?family=Chilanka&display=swap" rel="stylesheet">
     <link href="{% static 'css/icofont/icofont.min.css' %}" rel="stylesheet">
+    <!--Loading Screen -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/spinkit/1.2.5/spinkit.css">
+
 </head>
+<script>
+    $(document).ready(function() {
+        $("#loadingScreen").css("display", "none");
+        $('#regular').click(function() {
+            $("#loadingScreen").css("display", "inline");
+        })
+    });
+</script>
 <style>
 
     {% load static %}
@@ -117,6 +128,12 @@
 			</div>
 		</a>
 	</div>
-
+    <div id = "loadingScreen" style = "position:fixed;height:100vh;width:100vw;top:0;left:0;background-color:white;opacity:.6">
+        <div class="sk-three-bounce"  style = "opacity:1;margin-top:45vh">
+                    <div class="sk-child sk-bounce1" style = "background-color:#f78c00;opacity:1"></div>
+                    <div class="sk-child sk-bounce2" style = "background-color:#f78c00"></div>
+                    <div class="sk-child sk-bounce3" style = "background-color:#f78c00"></div>
+        </div>
+   </div>
 </body>
 </html>

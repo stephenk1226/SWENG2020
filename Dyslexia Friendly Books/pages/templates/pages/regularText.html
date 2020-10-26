@@ -14,6 +14,7 @@
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!-- Popper.JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
     <!-- Bootstrap JS -->
@@ -21,48 +22,260 @@
     <!-- Favicon -->
     <link rel="apple-touch-icon" sizes="180x180" href=" {% static 'images/apple-touch-icon.png' %}">
     <link rel="icon" type="image/png" sizes="32x32" href="{% static 'images/favicon-32x32.png' %}">
-    <link rel="icon" type="image/png" sizes="16x16" href="{% static  'images/favicon-16x16.png' &}">
-    <link rel="manifest" href="/site.webmanifest">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static  'images/favicon-16x16.png' %}">
     <!-- Font Awesome JS -->
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
+
     <!--Google Font Chilanka -->
     <link href="https://fonts.googleapis.com/css?family=Chilanka&display=swap" rel="stylesheet">
+    <!--Loading Screen -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/spinkit/1.2.5/spinkit.css">
 </head>
  {% load static %}
+
     <style>
         body{
+            background: #FFF url("https://i.imgur.com/KheAuef.png") top left repeat-x;
             font-family: 'Chilanka', cursive;
         }
 
+
+
+
         textarea { resize: vertical; }
+
+        pre, .holder-description {
+            font-size: 14px;
+            line-height: 26px;
+            margin: 0px 0 0;
+            text-align:justify;
+            font-weight: 400;
+            text-align: center;
+            background: #fff;
+            border: none;
+            word-break: break-all;
+            word-wrap: normal;
+            white-space: pre-line;
+            overflow: hidden;
+            padding-bottom: 20px;
+        }
+
+        .text-pagination {
+            overflow: hidden;
+            clear: both;
+            margin: 0px auto;
+            padding: 0;
+            display: inline-block;
+        }
+
+        .text-pagination li {
+            list-style: none;
+            float: left;
+            margin: 0 2px;
+            display: inline-block;
+        }
+
+        .text-pagination li a {
+          color: black;
+          float: left;
+          padding: 8px 16px;
+          text-decoration: none;
+        }
+
+        .text-pagination li a:first-child  {
+            border-top-left-radius: 5px;
+            border-bottom-left-radius: 5px;
+        }
+
+        .text-pagination li a:last-child  {
+            border-top-right-radius: 5px;
+            border-bottom-right-radius: 5px;
+        }
+
+        .text-pagination li a.active {
+            background-color: #1E88E5;
+            color: white;
+        }
+
+        .text-pagination li a:hover:not(.active){
+            background-color: #ddd;
+        }
+
+        .text-page {
+            margin: 0px;
+        }
+
+        .holder-description {
+            width:60vw;
+            height:80vh;
+            display:block;
+            margin:10px;
+        }
+
+        figure {
+            width:100px;
+            position: relative;
+            margin: 20px;
+            float: left;
+            display:block;
+            display:none;
+        }
+
     </style>
 
-
 <body>
+    <script>
+     $(document).ready(function(){
+        (function ($) {
+            $.fn.craftyslide = function (options) {
 
+                // Defaults
+                var defaults = {
+                    "width": '100%',
+                    "height": '100%',
+                    "pagination": true,
+                    "fadetime": 0,
+                    "delay": 0
+                };
+
+                var options = $.extend(defaults, options);
+
+                return this.each(function () {
+
+                    // Vars
+                    var $this = $(this);
+                    var $slides = $this.find("pre");
+
+                    $slides.not(':first').hide();
+
+                    // Pagination
+                    function paginate() {
+                        $this.append("<ol class='text-pagination craftyslide' />");
+
+                        var i = 1;
+                        $slides.each(function () {
+                            $(this).attr("data-slide-id", "slide" + i);
+                            $this.find(".text-pagination")
+                            .append("<li><a href='#' data-slide-id='slide" + i + "'>" + i + "</a></li>");
+                            i++;
+                        });
+
+                        $this.find(".text-pagination li a:first").addClass("active");
+                    }
+
+                    // Manual mode
+                    function manual() {
+                        var $pagination = $this.find(".text-pagination li a");
+                        $pagination.click(function (e) {
+                            e.preventDefault();
+
+                            var link = $(this);
+                            var slideId = link.data('slide-id');
+                            var $current = $this.find('pre[data-slide-id="' + slideId + '"]');
+                            if ($current.is(":hidden")) {
+                                $slides.fadeOut(options.fadetime);
+                                $current.fadeIn(options.fadetime);
+                                $pagination.removeClass("active");
+                                $(this).addClass("active");
+                            }
+                        });
+                    }
+
+                    $this.find("pre").css('height',options.height);
+
+                    paginate();
+
+                    var singleLiWidth = $this.find(".text-pagination li").eq(0).outerWidth(true);
+                    var itemcount = $this.find(".text-pagination li").length;
+
+                    $this.find(".text-pagination").width(itemcount * singleLiWidth);
+
+                    manual();
+                });
+            };
+            $("#loadingScreen").css("display", "inline");
+        })(jQuery);
+
+
+
+        //main JS code here
+
+        var contentBox = $('#target');
+        var words = contentBox.text().split(' ');
+
+        function paginate() {
+            var newPage = $('<pre class="text-page" />');
+            contentBox.empty().append(newPage);
+            var betterPageText='';
+            var pageNum = 0;
+            var isNewPage = false;
+
+            var lineHeight = parseInt(contentBox.css('line-height'), 10);
+
+            var wantedHeight = contentBox.height() - lineHeight;
+
+            for (var i = 0; i < words.length; i++) {
+                if (isNewPage) {
+                    //betterPageText = betterPageText + words[i];
+                    isNewPage = false;
+                } else {
+                    betterPageText = betterPageText + ' ' + words[i];
+                }
+                newPage.text(betterPageText + ' ...');
+                if (newPage.height() >= wantedHeight) {
+                    pageNum++;
+                    if (pageNum > 0) {
+                        betterPageText = betterPageText + ' ...';
+                    }
+
+                    newPage.text(betterPageText);
+                    newPage.clone().insertBefore(newPage)
+
+                    betterPageText = '...';
+                    isNewPage = true;
+                } else {
+                    newPage.text(betterPageText);
+                }
+            }
+
+            contentBox.craftyslide({ height: wantedHeight });
+        }
+        $(window).resize(paginate).resize();
+        $("#loadingScreen").css("display", "none");
+     })
+
+</script>
+
+    <div id="page">
     <div class="wrapper">
 
         <!-- Page Content  -->
+
         <div id="content">
-                <nav class="navbar navbar-dark bg-dark navbar-fixed-top" >
-                    <a class="navbar-brand" style = "color:white; " href="{% url 'book' %}" >GutenRead</a>
+                <nav class="navbar navbar-expand-sm navbar-dark bg-dark main-nav">
+                    <div class="container justify-content-center">
+                        <ul class="nav navbar-nav justify-content-center">
+                            <li class="navbar-brand"><a class="nav-link" href="{% url 'book' %}">Gutenread</a></li>
+                        </ul>
+                    </div>
                 </nav>
 
                 <div class="row">
                         <div  class="col-sm-2" >
                         </div>
 
-
                         <div  class="col-sm-7" >
                             <div style="padding-top: 15px; margin-left: 60px">
-                            {% block content %}
-                                <h1 style = "padding-bottom: 2vh; text-align: center; font-weight: bold">{{name}}</h1>
-                                {% for c in content %}
-                                    <p id = "textBox">{{c}}</p>
-                                {% endfor %}
+                                {% block content %}
+                                    {% for c in content %}
+                                <div class='expander-content'>
+                                    <div id="target" class='holder-description'>
+                                            {{ c }}
+                                    </div>
+                                    {% endfor %}
+                                </div>
                             {% endblock %}
-                            </div>
                         </div>
 
                          <div  class="col-sm-2" >
@@ -71,6 +284,15 @@
 
         </div>
     </div>
+    </div>
+    </div>
+   <div id = "loadingScreen" style = "position:fixed;height:100vh;width:100vw;top:0;left:0;background-color:white;opacity:.6">
+				<div class="sk-three-bounce"  style = "opacity:1;margin-top:45vh">
+				<div class="sk-child sk-bounce1" style = "background-color:#f78c00;opacity:1"></div>
+				<div class="sk-child sk-bounce2" style = "background-color:#f78c00"></div>
+				<div class="sk-child sk-bounce3" style = "background-color:#f78c00"></div>
+                </div>
+   </div>
 </body>
 
 </html>

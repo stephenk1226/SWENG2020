@@ -6,47 +6,231 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <!-- Book Carousel -->
+    <link rel="stylesheet" href="{% static 'owl.carousel/assets/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static 'owl.carousel/assets/owl.theme.default.min.css'%}">
+     <!-- Icofont -->
+    <link rel="stylesheet" href="{% static 'css/icofont/icofont.min.css'%}">
+    <!-- Main CSS-->
+    <link rel="stylesheet" href="{% static 'mainh.css'%}">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <!-- Favicon -->
   <link rel="apple-touch-icon" sizes="180x180" href=" {% static 'images/apple-touch-icon.png' %}">
   <link rel="icon" type="image/png" sizes="32x32" href="{% static 'images/favicon-32x32.png' %}">
   <link rel="icon" type="image/png" sizes="16x16" href="{% static  'images/favicon-16x16.png' %}">
-  <link rel="manifest" href="/site.webmanifest">
+  <!--<link rel="manifest" href="/site.webmanifest">-->
   <!--Google Font Chilanka -->
   <link href="https://fonts.googleapis.com/css?family=Chilanka&display=swap" rel="stylesheet">
+ <script src="{% static 'scripts/owl.carousel.min.js' %}"></script>
+    <script>
+      $(document).ready(function() {
+    $('.owl-carousel').owlCarousel({
+    loop:true,
+    margin:10,
+    nav:true,
+    autoplayTimeout:10000,
+    navText : ["<i class='fa fa-chevron-left'></i>","<i class='fa fa-chevron-right'></i>"],
+    responsive:{
+        0:{
+            items:1
+        },
+        600:{
+            items:3
+        },
+        1000:{
+            items:5
+        }
+    }
+})
+});
+  </script>
   <style>
+  #footer {
+  color: #444444;
+  font-size: 14px;
+  background: #f7fbfe;
+}
+
+#footer .footer-top {
+  padding: 40px 0 30px 0;
+  background: #fff;
+}
+
+#footer .footer-top .footer-contact {
+  margin-bottom: 30px;
+}
+
+#footer .footer-top .footer-contact h4 {
+  font-size: 22px;
+  margin: 0 0 30px 0;
+  padding: 2px 0 2px 0;
+  line-height: 1;
+  font-weight: 700;
+}
+
+#footer .footer-top .footer-contact p {
+  font-size: 14px;
+  line-height: 24px;
+  margin-bottom: 0;
+  /*font-family: "Raleway", sans-serif;*/
+  /*font-family: 'Space Mono', monospace;*/
+  font-family: "Poppins", sans-serif;
+  color: #777777;
+}
+
+#footer .footer-top h4 {
+  font-size: 16px;
+  font-weight: bold;
+  color: #444444;
+  position: relative;
+  padding-bottom: 12px;
+}
+
+#footer .footer-top .footer-links {
+  margin-bottom: 30px;
+}
+
+#footer .footer-top .footer-links ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+#footer .footer-top .footer-links ul i {
+  padding-right: 2px;
+  color: #3282b8;
+  font-size: 18px;
+  line-height: 1;
+}
+
+#footer .footer-top .footer-links ul li {
+  padding: 10px 0;
+  display: flex;
+  align-items: center;
+}
+
+#footer .footer-top .footer-links ul li:first-child {
+  padding-top: 0;
+}
+
+#footer .footer-top .footer-links ul a {
+  color: #777777;
+  transition: 0.3s;
+  display: inline-block;
+  line-height: 1;
+}
+
+#footer .footer-top .footer-links ul a:hover {
+  text-decoration: none;
+  color: #3282b8;
+}
+
+#footer .footer-newsletter {
+  font-size: 15px;
+}
+
+#footer .footer-newsletter h4 {
+  font-size: 16px;
+  font-weight: bold;
+  color: #444444;
+  position: relative;
+  padding-bottom: 12px;
+}
+
+#footer .footer-newsletter form {
+  margin-top: 30px;
+  background: #fff;
+  padding: 6px 10px;
+  position: relative;
+  border-radius: 4px;
+  text-align: left;
+  border: 1px solid #b6daf2;
+}
+
+#footer .footer-newsletter form input[type="email"] {
+  border: 0;
+  padding: 4px 8px;
+  width: calc(100% - 100px);
+}
+
+#footer .footer-newsletter form input[type="submit"] {
+  position: absolute;
+  top: 0;
+  right: -2px;
+  bottom: 0;
+  border: 0;
+  background: none;
+  font-size: 16px;
+  padding: 0 20px 2px 20px;
+  background: #3282b8;
+  color: #fff;
+  transition: 0.3s;
+  border-radius: 0 4px 4px 0;
+  box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);
+}
+
+#footer .footer-newsletter form input[type="submit"]:hover {
+  background: #57aae1;
+}
+
+#footer .credits {
+  padding-top: 5px;
+  font-size: 13px;
+  color: #444444;
+}
+
+#footer .social-links a {
+  font-size: 18px;
+  display: inline-block;
+  background: #3282b8;
+  color: #fff;
+  line-height: 1;
+  padding: 8px 0;
+  margin-right: 4px;
+  border-radius: 50%;
+  text-align: center;
+  width: 36px;
+  height: 36px;
+  transition: 0.3s;
+}
+
+#footer .social-links a:hover {
+  background: #5faee3;
+  color: #fff;
+  text-decoration: none;
+}
   body {
       font-family: 'Chilanka', cursive;
       position: relative;
   }
-  #section1 {padding-top:50px;height:500px;color: #fff; background-color: #1E88E5;}
-  #section2 {padding-top:50px;height:500px;color: #fff; background-color: #673ab7;}
-  #section3 {padding-top:50px;height:500px;color: #fff; background-color: #ff9800;}
-  #section4 {padding-top:50px;height:500px;color: #fff; background-color: #0033ff;}
-  #section5 {padding-top:50px;height:500px;color: #fff; background-color: #00c8ff;}
-  #section6 {padding-top:50px;height:500px;color: #fff; background-color: #bfff00;}
-  #section7 {padding-top:50px;height:500px;color: #fff; background-color: #6aff00;}
-  #section8 {padding-top:50px;height:500px;color: #fff; background-color: #00ff80;}
-  #section9 {padding-top:50px;height:500px;color: #fff; background-color: #00ffb3;}
-  #section10 {padding-top:50px;height:500px;color: #fff; background-color: #00ffe1;}
-  #section11 {padding-top:50px;height:500px;color: #fff; background-color: #00c8ff;}
-  #section12 {padding-top:50px;height:500px;color: #fff; background-color: #006eff;}
-  #section13 {padding-top:50px;height:500px;color: #fff; background-color: #0033ff;}
-  #section14 {padding-top:50px;height:500px;color: #fff; background-color: #4c00ff;}
-  #section15 {padding-top:50px;height:500px;color: #fff; background-color: #8c00ff;}
-  #section16 {padding-top:50px;height:500px;color: #fff; background-color: #bf00ff;}
-  #section17 {padding-top:50px;height:500px;color: #fff; background-color: #f700ff;}
-  #section18 {padding-top:50px;height:500px;color: #fff; background-color: #ff0080;}
-  #section19 {padding-top:50px;height:500px;color: #fff; background-color: #ff0051;}
-  #section20 {padding-top:50px;height:500px;color: #fff; background-color: #ff002f;}
-  #section21 {padding-top:50px;height:500px;color: #fff; background-color: #ff9800;}
-  #section22 {padding-top:50px;height:500px;color: #fff; background-color: #ffcc00;}
-  #section23 {padding-top:50px;height:500px;color: #fff; background-color: #ffff00;}
-  #section24 {padding-top:50px;height:500px;color: #fff; background-color: #bfff00;}
-  #section25 {padding-top:50px;height:500px;color: #fff; background-color: #6aff00;}
-  #section25 {padding-top:50px;height:500px;color: #fff; background-color: #00ff80;}
-  #section26 {padding-top:50px;height:500px;color: #fff; background-color: #00ffb3;}
+  #section1 {padding-top:50px;height:85vh;color: #fff; background-color: #1E88E5;}
+  #section2 {padding-top:50px;height:85vh;color: #fff; background-color: #673ab7;}
+  #section3 {padding-top:50px;height:85vh;color: #fff; background-color: #ff9800;}
+  #section4 {padding-top:50px;height:85vh;color: #fff; background-color: #0033ff;}
+  #section5 {padding-top:50px;height:85vh;color: #fff; background-color: #00c8ff;}
+  #section6 {padding-top:50px;height:85vh;color: #fff; background-color: #bfff00;}
+  #section7 {padding-top:50px;height:85vh;color: #fff; background-color: #6aff00;}
+  #section8 {padding-top:50px;height:85vh;color: #fff; background-color: #00ff80;}
+  #section9 {padding-top:50px;height:85vh;color: #fff; background-color: #00ffb3;}
+  #section10 {padding-top:50px;height:85vh;color: #fff; background-color: #00ffe1;}
+  #section11 {padding-top:50px;height:85vh;color: #fff; background-color: #00c8ff;}
+  #section12 {padding-top:50px;height:85vh;color: #fff; background-color: #006eff;}
+  #section13 {padding-top:50px;height:85vh;color: #fff; background-color: #0033ff;}
+  #section14 {padding-top:50px;height:85vh;color: #fff; background-color: #4c00ff;}
+  #section15 {padding-top:50px;height:85vh;color: #fff; background-color: #8c00ff;}
+  #section16 {padding-top:50px;height:85vh;color: #fff; background-color: #bf00ff;}
+  #section17 {padding-top:50px;height:85vh;color: #fff; background-color: #f700ff;}
+  #section18 {padding-top:50px;height:85vh;color: #fff; background-color: #ff0080;}
+  #section19 {padding-top:50px;height:85vh;color: #fff; background-color: #ff0051;}
+  #section20 {padding-top:50px;height:85vh;color: #fff; background-color: #ff002f;}
+  #section21 {padding-top:50px;height:85vh;color: #fff; background-color: #ff9800;}
+  #section22 {padding-top:50px;height:85vh;color: #fff; background-color: #ffcc00;}
+  #section23 {padding-top:50px;height:85vh;color: #fff; background-color: #ffff00;}
+  #section24 {padding-top:50px;height:85vh;color: #fff; background-color: #bfff00;}
+  #section25 {padding-top:50px;height:85vh;color: #fff; background-color: #6aff00;}
+  #section25 {padding-top:50px;height:85vh;color: #fff; background-color: #00ff80;}
+  #section26 {padding-top:50px;height:85vh;color: #fff; background-color: #00ffb3;}
   #bookImage{
     margin-left: 100px;
     width: 200px;
@@ -57,6 +241,33 @@
   }
   #bookTitle{margin-left: 110px}
   #bookAuthor{margin-left: 110px; margin-bottom: 30px}
+
+  .back-to-top {
+  position: fixed;
+  display: none;
+  right: 15px;
+  bottom: 15px;
+  z-index: 99999;
+}
+
+.back-to-top i {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  width: 40px;
+  height: 40px;
+  border-radius: 4px;
+  background: #3282b8;
+  color: #fff;
+  transition: all 0.4s;
+}
+
+.back-to-top i:hover {
+  background: #57aae1;
+  color: #fff;
+}
+
   </style>
 
 </head>
@@ -73,7 +284,7 @@
       <a class="navbar-brand" href="#">GutenRead</a>
     </div>
     <div>
-      <div class="collapse navbar-collapse" id="myNavbar">
+      <div class="nav-menu d-none d-lg-block" id="myNavbar">
         <ul class="nav navbar-nav" style ="margin-left: 20px">
           <li><a href="#section1">A</a></li>
           <li><a href="#section2">B</a></li>
@@ -100,135 +311,144 @@
           <li><a href="#section23">W</a></li>
           <li><a href="#section24">X</a></li>
           <li><a href="#section25">Y</a></li>
-          <li><a href="#section26">Z</a></li>
+          <li><a href="test">Z</a></li>
+          <li>
+              <a href="feedback" >
+                <button  type="button" class = "btn btn-outline-success my-2 my-sm-0 " style = "background-color: #353a40;">
+                    <span style ="color: white">Feedback</span>
+                </button>
+              </a>
+          </li>
         </ul>
-          <a href="feedback" >
-            <button  type="button" class = "btn btn-outline-success my-2 my-sm-0 " style = "background-color: #353a40; margin-top: 1vh; margin-left: 15vw ">
-                        <span style ="color: white">Feedback</span>
-            </button>
-          </a>
       </div>
-
     </div>
-
   </div>
-
 </nav>
 
 <div id="section1" class="container-fluid">
   <h1>A</h1>
-  <div style="height:35vh">
-      {% load static %}
-
-       <div class="row">
-      {% for book in books %}
-      {% if book.book_title|make_list|first  == 'A' %}
-      <div class = "zoom">
-        <div class="col-md-3">
-          <a href="{{book.book_num}}/">
-          <img  id = "bookImage" src="{{ book.book_cover_photo.url }}">
-          </a>
-          <h4 id = bookTitle>{{ book.book_title }}</h4>
-          <h4 id = bookAuthor>{{ book.book_author_fname}} {{ book.book_author_lname}}</h4>
-        </div>
-      </div>
+          <div class="row">
+              <div class="owl-carousel owl-theme">
+              {% for book in books %}
+              {% if book.book_title|make_list|first  == 'A' %}
+                  <div class = "zoom">
+                  <div class="item">
+                        <a href="{{book.book_num}}/">
+                            <img  id = "bookImage" src="{{ book.book_cover_photo.url }}">
+                        </a>
+                        <h4 id = bookTitle>{{ book.book_title }}</h4>
+                        <h4 id = bookAuthor>{{ book.book_author_fname}} {{ book.book_author_lname}}</h4>
+                  </div>
+                  </div>
       {% endif %}
-
       {% endfor %}
-        </div>
-
-  </div>
+              </div>
+          </div>
 </div>
+
 <div id="section2" class="container-fluid">
   <h1>B</h1>
-
-  <div class = "row">
-  {% for book in books %}
-    {% if book.book_title|make_list|first  == 'B' %}
-    <div class = "zoom">
-        <div class="col-md-3">
-           <a href="{{book.book_num}}/">
-          <img  id = "bookImage" src="{{ book.book_cover_photo.url }}">
-          </a>
-          <h4 id = bookTitle>{{ book.book_title }}</h4>
-          <h4 id = bookAuthor>{{ book.book_author_fname}} {{ book.book_author_lname}}</h4>
-        </div>
-    </div>
+ <div class="row">
+              <div class="owl-carousel owl-theme">
+              {% for book in books %}
+              {% if book.book_title|make_list|first  == 'B' %}
+                  <div class = "zoom">
+                  <div class="item">
+                        <a href="{{book.book_num}}/">
+                            <img  id = "bookImage" src="{{ book.book_cover_photo.url }}">
+                        </a>
+                        <h4 id = bookTitle>{{ book.book_title }}</h4>
+                        <h4 id = bookAuthor>{{ book.book_author_fname}} {{ book.book_author_lname}}</h4>
+                  </div>
+                  </div>
       {% endif %}
-  {% endfor %}
-  </div>
+      {% endfor %}
+              </div>
+          </div>
 </div>
+
 <div id="section3" class="container-fluid">
   <h1>C</h1>
-  <div class = "row">
-  {% for book in books %}
-    {% if book.book_title|make_list|first  == 'C' %}
-    <div class = "zoom">
-        <div class="col-md-3">
-           <a href="{{book.book_num}}/">
-          <img  id = "bookImage" src="{{ book.book_cover_photo.url }}">
-          </a>
-          <h4 id = bookTitle>{{ book.book_title }}</h4>
-          <h4 id = bookAuthor>{{ book.book_author_fname}} {{ book.book_author_lname}}</h4>
-        </div>
-    </div>
+   <div class="row">
+              <div class="owl-carousel owl-theme">
+              {% for book in books %}
+              {% if book.book_title|make_list|first  == 'C' %}
+                  <div class = "zoom">
+                  <div class="item">
+                        <a href="{{book.book_num}}/">
+                            <img  id = "bookImage" src="{{ book.book_cover_photo.url }}">
+                        </a>
+                        <h4 id = bookTitle>{{ book.book_title }}</h4>
+                        <h4 id = bookAuthor>{{ book.book_author_fname}} {{ book.book_author_lname}}</h4>
+                  </div>
+                  </div>
       {% endif %}
-  {% endfor %}
-  </div>
+      {% endfor %}
+              </div>
+          </div>
 </div>
+
 <div id="section4" class="container-fluid">
   <h1>D</h1>
-  <div class = "row">
-  {% for book in books %}
-    {% if book.book_title|make_list|first  == 'D' %}
-    <div class = "zoom">
-        <div class="col-md-3">
-          <a href="{{book.book_num}}/">
-          <img  id = "bookImage" src="{{ book.book_cover_photo.url }}">
-          </a>
-          <h4 id = bookTitle>{{ book.book_title }}</h4>
-          <h4 id = bookAuthor>{{ book.book_author_fname}} {{ book.book_author_lname}}</h4>
-        </div>
-    </div>
+  <div class="row">
+              <div class="owl-carousel owl-theme">
+              {% for book in books %}
+              {% if book.book_title|make_list|first  == 'D' %}
+                  <div class = "zoom">
+                  <div class="item">
+                        <a href="{{book.book_num}}/">
+                            <img  id = "bookImage" src="{{ book.book_cover_photo.url }}">
+                        </a>
+                        <h4 id = bookTitle>{{ book.book_title }}</h4>
+                        <h4 id = bookAuthor>{{ book.book_author_fname}} {{ book.book_author_lname}}</h4>
+                  </div>
+                  </div>
       {% endif %}
-  {% endfor %}
+      {% endfor %}
+              </div>
   </div>
 </div>
+
 <div id="section5" class="container-fluid">
   <h1>E</h1>
-  <div class = "row">
-  {% for book in books %}
-    {% if book.book_title|make_list|first  == 'E' %}
-    <div class = "zoom">
-        <div class="col-md-3">
-           <a href="{{book.book_num}}/">
-          <img  id = "bookImage" src="{{ book.book_cover_photo.url }}">
-          </a>
-          <h4 id = bookTitle>{{ book.book_title }}</h4>
-          <h4 id = bookAuthor>{{ book.book_author_fname}} {{ book.book_author_lname}}</h4>
-        </div>
-    </div>
+   <div class="row">
+              <div class="owl-carousel owl-theme">
+              {% for book in books %}
+              {% if book.book_title|make_list|first  == 'E' %}
+                  <div class = "zoom">
+                  <div class="item">
+                        <a href="{{book.book_num}}/">
+                            <img  id = "bookImage" src="{{ book.book_cover_photo.url }}">
+                        </a>
+                        <h4 id = bookTitle>{{ book.book_title }}</h4>
+                        <h4 id = bookAuthor>{{ book.book_author_fname}} {{ book.book_author_lname}}</h4>
+                  </div>
+                  </div>
       {% endif %}
-  {% endfor %}
-  </div>
+      {% endfor %}
+              </div>
+   </div>
 </div>
+
 <div id="section6" class="container-fluid">
   <h1>F</h1>
-  <div class = "row">
-  {% for book in books %}
-    {% if book.book_title|make_list|first  == 'F' %}
-      <div class ="zoom">
-        <div class="col-md-3">
-           <a href="{{book.book_num}}/">
-          <img  id = "bookImage" src="{{ book.book_cover_photo.url }}">
-          </a>
-          <h4 id = bookTitle>{{ book.book_title }}</h4>
-          <h4 id = bookAuthor>{{ book.book_author_fname}} {{ book.book_author_lname}}</h4>
-        </div>
-       </div>
+   <div class="row">
+              <div class="owl-carousel owl-theme">
+              {% for book in books %}
+              {% if book.book_title|make_list|first  == 'F' %}
+                  <div class = "zoom">
+                  <div class="item">
+                        <a href="{{book.book_num}}/">
+                            <img  id = "bookImage" src="{{ book.book_cover_photo.url }}">
+                        </a>
+                        <h4 id = bookTitle>{{ book.book_title }}</h4>
+                        <h4 id = bookAuthor>{{ book.book_author_fname}} {{ book.book_author_lname}}</h4>
+                  </div>
+                  </div>
       {% endif %}
-  {% endfor %}
-  </div>
+      {% endfor %}
+              </div>
+          </div>
 </div>
 <div id="section7" class="container-fluid">
   <h1>G</h1>
@@ -548,6 +768,7 @@
         </div>
       {% endif %}
   {% endfor %}
+            <a href="#section1" class="back-to-top"> go up</a>
   </div>
 </div>
 

@@ -20,8 +20,11 @@ from google_speech import Speech
 
 from .models import Book
 
-register = template.Library()
+import ebooklib
+from ebooklib import epub
 
+
+register = template.Library()
 
 def feedback_form(request):
     if request.method == 'POST':
@@ -33,6 +36,13 @@ def feedback_form(request):
     else:
         form = FeedbackForm()
     return render(request, 'pages/feedback.html', {'form': form})
+
+
+def test_view(request):
+    book = epub.read_epub('./media/test.epub')
+    for image in book.get_items_of_type(ebooklib.ITEM_IMAGE):
+        print(image)
+    return render(request, 'pages/test.html')        
 
 
 def Book_view(request):
